@@ -20,6 +20,7 @@ volatile bool flag[2] = { false, false };
 void plock(int myID) {
 	int other = 1 - myID;
 	flag[myID] = true;
+	atomic_thread_fence(memory_order_seq_cst);
 	victim = myID;
 	while (flag[other] && victim == myID) {}
 }
