@@ -36,7 +36,7 @@
     <ClCompile Include="190924.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="190924_2.cpp">
+    <ClCompile Include="190925.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
