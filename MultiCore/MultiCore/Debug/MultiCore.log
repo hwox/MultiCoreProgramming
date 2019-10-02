@@ -1,7 +1,1 @@
-﻿  HelloWorld.cpp
-c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\helloworld.cpp(45): warning C4244: '초기화 중': '_Rep'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              _Rep=__int64
-          ]
-  MultiCore.vcxproj -> C:\Users\hw\Desktop\4-2\멀티코어프로그래밍\MultiCoreProgramming\MultiCore\Debug\MultiCore.exe
+﻿  MultiCore.vcxproj -> C:\Users\hw\Desktop\4-2\멀티코어프로그래밍\MultiCoreProgramming\MultiCore\Debug\MultiCore.exe

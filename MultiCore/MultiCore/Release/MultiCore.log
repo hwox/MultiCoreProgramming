@@ -1,12 +1,1 @@
-﻿  190925.cpp
-c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\190925.cpp(73): warning C4244: '초기화 중': '_Rep'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              _Rep=__int64
-          ]
-  코드를 생성하고 있습니다.
-  0 of 190 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  코드를 생성했습니다.
-  MultiCore.vcxproj -> C:\Users\hw\Desktop\4-2\멀티코어프로그래밍\MultiCoreProgramming\MultiCore\Release\MultiCore.exe
+﻿  MultiCore.vcxproj -> C:\Users\hw\Desktop\4-2\멀티코어프로그래밍\MultiCoreProgramming\MultiCore\Release\MultiCore.exe

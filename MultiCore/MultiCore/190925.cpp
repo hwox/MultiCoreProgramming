@@ -27,12 +27,12 @@ void punlock(int myID) {
 }
 
 
-int x=0; // 0->Lock이 free다 (아무도 lock을 얻지 못함)
+volatile int x=0; // 0->Lock이 free다 (아무도 lock을 얻지 못함)
 		// 1-> 누군가 lock을 얻어서 critical section을 실행중임
 
-bool CAS(int *addr, int exp, int up)
+bool CAS(volatile int *addr, int exp, int up)
 {
-	return atomic_compare_exchange_strong(reinterpret_cast<atomic_int *>(addr), &exp, up);
+	return atomic_compare_exchange_strong(reinterpret_cast<volatile atomic_int *>(addr), &exp, up);
 }
 
 void CASLock()
@@ -41,7 +41,8 @@ void CASLock()
 }
 void CASUnlock()
 {
-	while (!CAS(&x, 1, 0));
+	//while (!CAS(&x, 1, 0));
+	x = 0;
 }
 
 void ThreadFunc2(int num_thread) {
