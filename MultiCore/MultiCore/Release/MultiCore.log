@@ -1,12 +1,13 @@
-﻿  191002_실습21.cpp
-c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191002_실습21.cpp(205): warning C4244: '초기화 중': '_Rep'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  191009_실습23(진).cpp
+c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191009_실습23(진).cpp(153): warning C4101: 'pred' :참조되지 않은 지역 변수입니다.
+c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191009_실습23(진).cpp(219): warning C4244: '초기화 중': '_Rep'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
           with
           [
               _Rep=__int64
           ]
   코드를 생성하고 있습니다.
-c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191002_실습21.cpp(121): warning C4715: 'CLIST::Remove': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  3 of 190 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
+c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191009_실습23(진).cpp(117): warning C4715: 'CLIST::Add': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  4 of 191 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.

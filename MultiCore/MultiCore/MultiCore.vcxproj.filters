@@ -54,5 +54,14 @@
     <ClCompile Include="191002_실습22.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="191008_실습23.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191009_실습23(진).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191008_실습24%28못함%29.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

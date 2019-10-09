@@ -21,12 +21,13 @@ public:
 	NODE *next;
 	bool marked;
 	mutex nlock;
-
-	NODE() { next = NULL; }
+	bool removed;
+	NODE() { next = NULL; removed = false; }
 
 	NODE(int key_value) {
 		next = NULL;
 		key = key_value;
+		removed = false;
 	}
 	void lock() {
 		nlock.lock();
@@ -41,13 +42,13 @@ public:
 };
 
 
-class CLIST {
+class ZLIST {
 	NODE head, tail;
 	NODE* freelist;
 	NODE freetail;
 	mutex fl;
 public:
-	CLIST()
+	ZLIST()
 	{
 		head.key = 0x80000000;
 		tail.key = 0x7FFFFFFF;
@@ -55,7 +56,7 @@ public:
 		freetail.key = 0x7FFFFFFF;
 		freelist = &freetail;
 	}
-	~CLIST() {}
+	~ZLIST() {}
 
 	void Init()
 	{
@@ -68,6 +69,8 @@ public:
 	}
 
 	bool validate(NODE* pred, NODE* curr) {
+
+
 		return !pred->marked && !curr->marked  &&pred->next == curr;
 	}
 
@@ -175,7 +178,7 @@ public:
 
 
 
-CLIST clist;
+ZLIST clist;
 void ThreadFunc(/*void *lpVoid,*/ int num_thread)
 {
 	int key;
