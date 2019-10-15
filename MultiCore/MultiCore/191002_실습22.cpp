@@ -28,6 +28,7 @@ public:
 		next = NULL;
 		key = key_value;
 		removed = false;
+		marked = false;
 	}
 	void lock() {
 		nlock.lock();
