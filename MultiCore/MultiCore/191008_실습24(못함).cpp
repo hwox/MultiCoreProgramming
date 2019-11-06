@@ -73,6 +73,7 @@ public:
 
 	bool validate(shared_ptr<SPNODE> pred, shared_ptr<SPNODE> curr)
 	{
+		// ref count가 증가되서 날라가는것을 막으려고 
 		return !pred->marked && !curr->marked && pred->next == curr;
 	}
 
