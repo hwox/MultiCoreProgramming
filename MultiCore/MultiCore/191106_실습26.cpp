@@ -82,7 +82,6 @@ public:
 		cout << endl;
 	}
 };
-
 class LFQUEUE {
 	NODE * volatile head;
 	NODE * volatile tail;
@@ -169,28 +168,31 @@ public:
 	}
 };
 
+//STAMP_PTR
 class SPTR {
+
 public:
-	NODE* volatile ptr;
-	int stamp;
+	NODE * volatile ptr;
+	volatile int stamp;
 	SPTR() {
 		ptr = nullptr;
 		stamp = 0;
 	}
-	SPTR(NODE *p, int s) {
-		ptr = p;
-		s = v;
-	}
 
+	SPTR(NODE* p, int v) {
+		ptr = p;
+		stamp = v;
+	}
 };
 class SLFQUEUE {
 	SPTR head;
 	SPTR tail;
-
 public:
-	SLFQUEUE() {
+	SLFQUEUE()
+	{
 		head.ptr = tail.ptr = new NODE(0);
 	}
+	~SLFQUEUE() {}
 
 	void Init()
 	{
@@ -202,91 +204,69 @@ public:
 		}
 		tail = head;
 	}
+	bool CAS(NODE * volatile * addr, NODE *old_node, NODE *new_node)
+	{
+		return atomic_compare_exchange_strong(reinterpret_cast<volatile atomic_int *>(addr),
+			reinterpret_cast<int *>(&old_node),
+			reinterpret_cast<int>(new_node));
+	}
 
-	bool STAMP_CAS(SPTR* addr, NODE* old_node, int old_stamp, NODE* new_node)
+	bool STAMP_CAS(SPTR *addr, NODE *old_node, int old_stamp, NODE *new_node)
 	{
 		SPTR old_ptr{ old_node, old_stamp };
 		SPTR new_ptr{ new_node, old_stamp + 1 };
-
-		return atomic_compare_exchange_strong(reinterpret_cast<atomic_llong *>(addr),
-			reinterpret_cast<long long*>(&old_ptr),
-			*(reinterpret_cast<long long*>(&new_ptr)));
+		return atomic_compare_exchange_strong(reinterpret_cast<volatile atomic_llong *>(addr),
+			reinterpret_cast<long long *>(&old_ptr),
+			*(reinterpret_cast<long long *>(&new_ptr)));
 	}
 
 	void Enq(int key)
 	{
 		NODE *e = new NODE(key);
 		while (true) {
-			NODE *last = tail;
-			NODE *next = last->next;
-			if (last != tail) continue;
-			if (NULL == next) {
-				if (CAS(&(last->next), NULL, e)) {
-					CAS(&tail, last, e);
-					return;
-				}
+			SPTR last = tail;
+			NODE *next = last.ptr->next;
+			if (last.stamp != tail.stamp) continue;
+			if (next != nullptr) {
+				STAMP_CAS(&tail, last.ptr, last.stamp, next);
+				continue;
 			}
-			else {
-				CAS(&tail, last, next);
-			}
+			if (false == CAS(&last.ptr, nullptr, e))
+				continue;
+			STAMP_CAS(&tail, last.ptr, last.stamp, e);
+			return;
 		}
 	}
 	int Deq()
 	{
-		//while (true) {
-		//	SPTR first = head;
-		//	NODE *next = first.ptr->next; //로컬변수라 굳이 SPTR로 할 필요가 없다. next의 스탬프 값을 cas에 쓰지 않음. head tail을 직접 쓸때만 
-		//	SPTR last = tail;
-		//	NODE *lastnext = last.ptr->next;
-		//	if (first.ptr != head.ptr) continue;
-		//	if (last.ptr == first.ptr) {
-		//		if (lastnext == nullptr) {
-		//			cout << "EMPTY!!!\n";
-		//			this_thread::sleep_for(1ms);
-		//			return -1;
-		//		}
-		//		else
-		//		{
-		//			STAMP_CAS(&tail, last.ptr, last.stamp, lastnext);
-		//			continue;
-		//		}
-		//	}
-		//	if (nullptr == next) continue;
-		//	int result = next->key;
-		//	if (false == STAMP_CAS(&head, first.ptr, first.stamp, next))
-		//		continue;
-
-		//	delete first.ptr;
-		//	return result;
-		//}
 		while (true) {
 			SPTR first = head;
-			NODE *next = first.ptr->next;
+			NODE *next = first.ptr->next; //로컬변수라 굳이 SPTR로 할 필요가 없다. next의 스탬프 값을 cas에 쓰지 않음. head tail을 직접 쓸때만 
 			SPTR last = tail;
 			NODE *lastnext = last.ptr->next;
-
 			if (first.ptr != head.ptr) continue;
-
-			if (first.ptr == head.ptr) {
-				if (last.ptr == first.ptr) {
-					cout << "EMPTY!!";
-
+			if (last.ptr == first.ptr) { //  if (first.ptr == head.ptr ???
+				if (lastnext == nullptr) {
+					cout << "EMPTY!!!\n";
 					this_thread::sleep_for(1ms);
 					return -1;
 				}
-				else {
+				else
+				{
 					STAMP_CAS(&tail, last.ptr, last.stamp, lastnext);
-				}
-				if (nullptr == next) continue;
-				int result = next->key;
-				if (false == STAMP_CAS(&head, first.ptr, first.stamp, next)) {
 					continue;
 				}
-				delete first.ptr;
-				return result;
 			}
+			if (nullptr == next) continue;
+			int result = next->key;
+			if (false == STAMP_CAS(&head, first.ptr, first.stamp, next))
+				continue;
+
+			delete first.ptr;
+			return result;
 		}
 	}
+
 	void display20()
 	{
 		int c = 20;
@@ -302,6 +282,8 @@ public:
 	}
 };
 
+
+
 const auto NUM_TEST = 10000000;
 const auto KEY_RANGE = 1000;
 
@@ -309,7 +291,7 @@ LFQUEUE my_queue;
 void ThreadFunc(int num_thread)
 {
 	for (int i = 0; i < NUM_TEST / num_thread; i++) {
-		if ((rand() % 2 == 0) || i < 100 / num_thread) {
+		if ((rand() % 2 == 0) || i < 10000 / num_thread) {
 			my_queue.Enq(i);
 		}
 		else {
@@ -332,8 +314,8 @@ int main()
 		//my_queue.recycle_freelist();
 		cout << n << "Threads,  ";
 		cout << ",  Duration : " << duration_cast<milliseconds>(d).count() << " msecs.\n";
+		cout << endl;
 	}
 	system("pause");
 }
-
 
