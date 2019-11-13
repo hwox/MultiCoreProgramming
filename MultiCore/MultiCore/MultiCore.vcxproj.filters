@@ -81,10 +81,13 @@
     <ClCompile Include="191106_실습26.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="191112_실습12.cpp">
+    <ClCompile Include="191112_실습27.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="191112_실습27.cpp">
+    <ClCompile Include="191112_실습12%28제출%29.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191113_실습13%28제출%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
