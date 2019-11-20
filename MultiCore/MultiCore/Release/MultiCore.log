@@ -1,7 +1,11 @@
-﻿  191113_실습13(제출).cpp
+﻿  191119_실습EliminationBackoffStack.cpp
+c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191119_실습eliminationbackoffstack.cpp(295): warning C4145: '&&': 관계식을 switch 식으로 사용했습니다. '&'과(와) 혼동할 수 있습니다.
+c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191119_실습eliminationbackoffstack.cpp(303): warning C4806: '!=': 안전하지 않은 연산입니다. 'bool' 형식의 값('const unsigned int' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
+c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191119_실습eliminationbackoffstack.cpp(335): warning C4808: case '-2147483648'은(는) 'bool' 형식의 switch 조건에 대한 올바른 값이 아닙니다.
+c:\users\hw\desktop\4-2\멀티코어프로그래밍\multicoreprogramming\multicore\multicore\191119_실습eliminationbackoffstack.cpp(325): warning C4808: case '1073741824'은(는) 'bool' 형식의 switch 조건에 대한 올바른 값이 아닙니다.
   코드를 생성하고 있습니다.
-  0 of 197 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  4 of 197 functions ( 2.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   MultiCore.vcxproj -> C:\Users\hw\Desktop\4-2\멀티코어프로그래밍\MultiCoreProgramming\MultiCore\Release\MultiCore.exe
