@@ -78,22 +78,34 @@
     <ClCompile Include="191106.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="191106_실습26.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="191112_실습27.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="191112_실습12%28제출%29.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="191113_실습13%28제출%29.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="191119_실습EliminationBackoffStack.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="191119_LFELSTACK.cpp">
+    <ClCompile Include="191119_LFELSTACK%28해야함%29.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191120_실습(스킵리스트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191120_실습13.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191106_실습26_LFQUEUE.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191112_실습12%28제출%29_LFSTACK.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191112_실습27_성긴스택.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191113_실습13%28제출%29_LFBOSTACK.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191120_SKIPLIST.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="191126_LockFreeSkipList.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
